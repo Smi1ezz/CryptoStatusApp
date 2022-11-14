@@ -16,6 +16,14 @@
 		84DC94C92915374F00281FA5 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC94C82915374F00281FA5 /* Endpoint.swift */; };
 		84DC94CB2915389B00281FA5 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC94CA2915389B00281FA5 /* NetworkManager.swift */; };
 		84DC94CD2915581500281FA5 /* CruptoCoinRespModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC94CC2915581500281FA5 /* CruptoCoinRespModel.swift */; };
+		84DC94D029159AFD00281FA5 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC94CF29159AFD00281FA5 /* AppRouter.swift */; };
+		84DC94D529159BC500281FA5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC94D429159BC500281FA5 /* LoginViewController.swift */; };
+		84DC94D829159FF900281FA5 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC94D729159FF900281FA5 /* UserDefaultsKeys.swift */; };
+		84DC94DA292234F000281FA5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC94D9292234EF00281FA5 /* LoginView.swift */; };
+		84DC94DD2922559C00281FA5 /* UIViewShadowExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC94DC2922559C00281FA5 /* UIViewShadowExt.swift */; };
+		84DC94E029225A4C00281FA5 /* TextFieldWithPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC94DF29225A4C00281FA5 /* TextFieldWithPadding.swift */; };
+		84DC94E229225D5300281FA5 /* UIViewBorderExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC94E129225D5300281FA5 /* UIViewBorderExt.swift */; };
+		84DC94E52922646D00281FA5 /* UIViewControllerHideKeybordExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC94E42922646C00281FA5 /* UIViewControllerHideKeybordExt.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +40,14 @@
 		84DC94C82915374F00281FA5 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		84DC94CA2915389B00281FA5 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		84DC94CC2915581500281FA5 /* CruptoCoinRespModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CruptoCoinRespModel.swift; sourceTree = "<group>"; };
+		84DC94CF29159AFD00281FA5 /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
+		84DC94D429159BC500281FA5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		84DC94D729159FF900281FA5 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
+		84DC94D9292234EF00281FA5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		84DC94DC2922559C00281FA5 /* UIViewShadowExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewShadowExt.swift; sourceTree = "<group>"; };
+		84DC94DF29225A4C00281FA5 /* TextFieldWithPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithPadding.swift; sourceTree = "<group>"; };
+		84DC94E129225D5300281FA5 /* UIViewBorderExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewBorderExt.swift; sourceTree = "<group>"; };
+		84DC94E42922646C00281FA5 /* UIViewControllerHideKeybordExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerHideKeybordExt.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +92,12 @@
 		84DC94B12915212900281FA5 /* CryptoStatusApp */ = {
 			isa = PBXGroup;
 			children = (
+				84DC94E32922644800281FA5 /* UIViewControllerKeybordExt */,
+				84DC94DE29225A1300281FA5 /* UITextFieldWithPadding */,
+				84DC94DB2922557E00281FA5 /* UIViewExt */,
+				84DC94D629159F6700281FA5 /* UserDefaultsKeys */,
+				84DC94D229159B5400281FA5 /* View */,
+				84DC94CE29159AE600281FA5 /* Router */,
 				84DC94C72915373300281FA5 /* NetworkService */,
 				84DC94B22915212900281FA5 /* AppDelegate.swift */,
 				84DC94B42915212900281FA5 /* SceneDelegate.swift */,
@@ -95,6 +117,64 @@
 				84DC94CC2915581500281FA5 /* CruptoCoinRespModel.swift */,
 			);
 			path = NetworkService;
+			sourceTree = "<group>";
+		};
+		84DC94CE29159AE600281FA5 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				84DC94CF29159AFD00281FA5 /* AppRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		84DC94D229159B5400281FA5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				84DC94D329159B7E00281FA5 /* LoginVC */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		84DC94D329159B7E00281FA5 /* LoginVC */ = {
+			isa = PBXGroup;
+			children = (
+				84DC94D429159BC500281FA5 /* LoginViewController.swift */,
+				84DC94D9292234EF00281FA5 /* LoginView.swift */,
+			);
+			path = LoginVC;
+			sourceTree = "<group>";
+		};
+		84DC94D629159F6700281FA5 /* UserDefaultsKeys */ = {
+			isa = PBXGroup;
+			children = (
+				84DC94D729159FF900281FA5 /* UserDefaultsKeys.swift */,
+			);
+			path = UserDefaultsKeys;
+			sourceTree = "<group>";
+		};
+		84DC94DB2922557E00281FA5 /* UIViewExt */ = {
+			isa = PBXGroup;
+			children = (
+				84DC94DC2922559C00281FA5 /* UIViewShadowExt.swift */,
+				84DC94E129225D5300281FA5 /* UIViewBorderExt.swift */,
+			);
+			path = UIViewExt;
+			sourceTree = "<group>";
+		};
+		84DC94DE29225A1300281FA5 /* UITextFieldWithPadding */ = {
+			isa = PBXGroup;
+			children = (
+				84DC94DF29225A4C00281FA5 /* TextFieldWithPadding.swift */,
+			);
+			path = UITextFieldWithPadding;
+			sourceTree = "<group>";
+		};
+		84DC94E32922644800281FA5 /* UIViewControllerKeybordExt */ = {
+			isa = PBXGroup;
+			children = (
+				84DC94E42922646C00281FA5 /* UIViewControllerHideKeybordExt.swift */,
+			);
+			path = UIViewControllerKeybordExt;
 			sourceTree = "<group>";
 		};
 		B631A686494E835F8EF212B6 /* Frameworks */ = {
@@ -237,11 +317,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84DC94DD2922559C00281FA5 /* UIViewShadowExt.swift in Sources */,
 				84DC94B72915212900281FA5 /* ViewController.swift in Sources */,
 				84DC94B32915212900281FA5 /* AppDelegate.swift in Sources */,
 				84DC94CB2915389B00281FA5 /* NetworkManager.swift in Sources */,
 				84DC94C92915374F00281FA5 /* Endpoint.swift in Sources */,
+				84DC94E029225A4C00281FA5 /* TextFieldWithPadding.swift in Sources */,
+				84DC94D829159FF900281FA5 /* UserDefaultsKeys.swift in Sources */,
+				84DC94D529159BC500281FA5 /* LoginViewController.swift in Sources */,
+				84DC94D029159AFD00281FA5 /* AppRouter.swift in Sources */,
 				84DC94B52915212900281FA5 /* SceneDelegate.swift in Sources */,
+				84DC94E229225D5300281FA5 /* UIViewBorderExt.swift in Sources */,
+				84DC94E52922646D00281FA5 /* UIViewControllerHideKeybordExt.swift in Sources */,
+				84DC94DA292234F000281FA5 /* LoginView.swift in Sources */,
 				84DC94CD2915581500281FA5 /* CruptoCoinRespModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
