@@ -24,6 +24,8 @@
 		84DC94E029225A4C00281FA5 /* TextFieldWithPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC94DF29225A4C00281FA5 /* TextFieldWithPadding.swift */; };
 		84DC94E229225D5300281FA5 /* UIViewBorderExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC94E129225D5300281FA5 /* UIViewBorderExt.swift */; };
 		84DC94E52922646D00281FA5 /* UIViewControllerHideKeybordExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC94E42922646C00281FA5 /* UIViewControllerHideKeybordExt.swift */; };
+		84DC94E8292266D100281FA5 /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC94E7292266D100281FA5 /* Checker.swift */; };
+		84DC94EA2922771500281FA5 /* UIViewAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC94E92922771500281FA5 /* UIViewAnimation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		84DC94DF29225A4C00281FA5 /* TextFieldWithPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithPadding.swift; sourceTree = "<group>"; };
 		84DC94E129225D5300281FA5 /* UIViewBorderExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewBorderExt.swift; sourceTree = "<group>"; };
 		84DC94E42922646C00281FA5 /* UIViewControllerHideKeybordExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerHideKeybordExt.swift; sourceTree = "<group>"; };
+		84DC94E7292266D100281FA5 /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
+		84DC94E92922771500281FA5 /* UIViewAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewAnimation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +96,7 @@
 		84DC94B12915212900281FA5 /* CryptoStatusApp */ = {
 			isa = PBXGroup;
 			children = (
+				84DC94E6292266AF00281FA5 /* LoginPasswordChecker */,
 				84DC94E32922644800281FA5 /* UIViewControllerKeybordExt */,
 				84DC94DE29225A1300281FA5 /* UITextFieldWithPadding */,
 				84DC94DB2922557E00281FA5 /* UIViewExt */,
@@ -157,6 +162,7 @@
 			children = (
 				84DC94DC2922559C00281FA5 /* UIViewShadowExt.swift */,
 				84DC94E129225D5300281FA5 /* UIViewBorderExt.swift */,
+				84DC94E92922771500281FA5 /* UIViewAnimation.swift */,
 			);
 			path = UIViewExt;
 			sourceTree = "<group>";
@@ -175,6 +181,14 @@
 				84DC94E42922646C00281FA5 /* UIViewControllerHideKeybordExt.swift */,
 			);
 			path = UIViewControllerKeybordExt;
+			sourceTree = "<group>";
+		};
+		84DC94E6292266AF00281FA5 /* LoginPasswordChecker */ = {
+			isa = PBXGroup;
+			children = (
+				84DC94E7292266D100281FA5 /* Checker.swift */,
+			);
+			path = LoginPasswordChecker;
 			sourceTree = "<group>";
 		};
 		B631A686494E835F8EF212B6 /* Frameworks */ = {
@@ -318,6 +332,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84DC94DD2922559C00281FA5 /* UIViewShadowExt.swift in Sources */,
+				84DC94E8292266D100281FA5 /* Checker.swift in Sources */,
 				84DC94B72915212900281FA5 /* ViewController.swift in Sources */,
 				84DC94B32915212900281FA5 /* AppDelegate.swift in Sources */,
 				84DC94CB2915389B00281FA5 /* NetworkManager.swift in Sources */,
@@ -325,6 +340,7 @@
 				84DC94E029225A4C00281FA5 /* TextFieldWithPadding.swift in Sources */,
 				84DC94D829159FF900281FA5 /* UserDefaultsKeys.swift in Sources */,
 				84DC94D529159BC500281FA5 /* LoginViewController.swift in Sources */,
+				84DC94EA2922771500281FA5 /* UIViewAnimation.swift in Sources */,
 				84DC94D029159AFD00281FA5 /* AppRouter.swift in Sources */,
 				84DC94B52915212900281FA5 /* SceneDelegate.swift in Sources */,
 				84DC94E229225D5300281FA5 /* UIViewBorderExt.swift in Sources */,
