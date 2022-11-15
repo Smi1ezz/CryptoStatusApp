@@ -8,40 +8,34 @@
 import Foundation
 
 protocol CheckProtocol {
-    func check(login: String, password: String) -> Bool
+    func setCorrect(user: UserModelProtocol)
+    func check(user: UserModelProtocol) -> Bool
 }
 
 protocol CheckerDelegate: AnyObject {
-    func wrongLogin()
-    func wrongPassword()
+    func failEntranse()
     func successEntrance()
 }
 
-class CheckerModel: CheckProtocol {
-
-    static let instance = CheckerModel(login: "Login", password: "Pass")
-
+class LogInChecker: CheckProtocol {
     weak var delegate: CheckerDelegate?
 
-    private let login: String
-    private let pswd: String
+    private var correctUser: UserModelProtocol?
 
-    private init(login: String, password: String) {
-        self.login = login
-        self.pswd = password
+    init(correctUser: UserModelProtocol? = nil) {
+        self.correctUser = correctUser
     }
 
-    func check(login: String, password: String) -> Bool {
-        if login == self.login && password == self.pswd {
+    func setCorrect(user: UserModelProtocol) {
+        self.correctUser = user
+    }
+
+    func check(user: UserModelProtocol) -> Bool {
+        if user.name == self.correctUser?.name && user.password == self.correctUser?.password {
             delegate?.successEntrance()
             return true
-        } else if login != self.login {
-            delegate?.wrongLogin()
-            return false
-        } else if password != self.pswd {
-            delegate?.wrongPassword()
-            return false
         } else {
+            delegate?.failEntranse()
             return false
         }
     }

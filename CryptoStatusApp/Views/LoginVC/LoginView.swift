@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class LoginScrollView: UIScrollView {
     // MARK: Properties
@@ -30,6 +31,7 @@ class LoginScrollView: UIScrollView {
 
     private let loginTextField: UITextField = {
        let loginTextField = TextFieldWithPadding()
+        loginTextField.tag = 1
         loginTextField.placeholder = "Login"
         loginTextField.backgroundColor = .white
         loginTextField.clearButtonMode = .whileEditing
@@ -39,6 +41,7 @@ class LoginScrollView: UIScrollView {
 
     private let passTextField: UITextField = {
        let passTextField = TextFieldWithPadding()
+        passTextField.tag = 2
         passTextField.placeholder = "Password"
         passTextField.isSecureTextEntry = true
         passTextField.backgroundColor = .white
@@ -75,6 +78,10 @@ class LoginScrollView: UIScrollView {
 
     func wrongEntranse() {
         entranceView.shakeIt()
+    }
+
+    func successEntranse() {
+        checkPassAndLogButton.blinkIt(color: .green)
     }
 
     private func setupConstraints() {

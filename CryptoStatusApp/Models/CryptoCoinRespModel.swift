@@ -1,5 +1,5 @@
 //
-//  CruptoCoinRespModel.swift
+//  CryptoCoinRespModel.swift
 //  CryptoStatusApp
 //
 //  Created by admin on 04.11.2022.
@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - FullDetailsResponse
-struct FullDetailsResponse: Codable {
+struct CryptoCoinRespModel: Codable {
     let status: Status?
     let data: DataStruct?
 }
