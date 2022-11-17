@@ -17,7 +17,7 @@ protocol CheckerDelegate: AnyObject {
     func successEntrance()
 }
 
-class LogInChecker: CheckProtocol {
+final class LogInChecker: CheckProtocol {
     weak var delegate: CheckerDelegate?
 
     private var correctUser: UserModelProtocol?

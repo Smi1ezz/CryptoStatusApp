@@ -11,6 +11,7 @@ extension UIView {
     func makeBorder(borderColor: UIColor = UIColor.black, borderWidth: CGFloat = 0.5, cornerRadius: CGFloat = 0) {
         layer.borderColor = borderColor.cgColor
         layer.borderWidth = borderWidth
-        layer.cornerRadius = 10
+        layer.cornerRadius = cornerRadius
+        layer.masksToBounds = true
     }
 }

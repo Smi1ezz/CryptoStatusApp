@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol LoginViewControllerDelegate: CheckerDelegate {
+protocol LoginViewControllerProtocol: CheckerDelegate, ErrorShowableView {
 
 }
 
@@ -46,19 +46,24 @@ final class LoginViewController: UIViewController {
 
     @objc
     private func buttonTaped() {
-        print("tap")
         guard let inputName = inputName, let inputPassword = inputPassword else {
-            loginView.wrongEntranse()
+            failEntranse()
+            showError(ErrorLogin.emptyInput)
             return
         }
-
-        presenter.tryToLogIn(name: inputName, password: inputPassword)
+        do {
+            try presenter.tryToLogIn(name: inputName, password: inputPassword)
+        } catch {
+            showError(error)
+        }
     }
 }
 
 // MARK: ext for LoginViewControllerDelegate
-extension LoginViewController: LoginViewControllerDelegate {
-
+extension LoginViewController: LoginViewControllerProtocol {
+    func showError(_ error: Error) {
+        loginView.showError(error)
+    }
 }
 
 // MARK: ext for UITextFieldDelegate
@@ -83,12 +88,10 @@ extension LoginViewController: UITextFieldDelegate {
 // MARK: ext for CheckerDelegate
 extension LoginViewController: CheckerDelegate {
     func failEntranse() {
-        print("wrongLogin")
         loginView.wrongEntranse()
     }
 
     func successEntrance() {
-        print("successEntrance")
         loginView.successEntranse()
     }
 }

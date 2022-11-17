@@ -40,7 +40,7 @@ extension UIView {
             let oldColor = self.backgroundColor
 
             UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5, animations: {
-                self.backgroundColor = .green
+                self.backgroundColor = color
             })
 
             UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.5, animations: {

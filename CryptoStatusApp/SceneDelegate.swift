@@ -36,8 +36,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         guard let scene = (scene as? UIWindowScene) else { return }
 
-        UserDefaults.standard.set(false, forKey: UserDefaultsKeys.isLoginPassed.rawValue)
-
         let mainWindow = UIWindow(windowScene: scene)
         appRouter = AppRouter(window: mainWindow)
         appRouter?.showRootScreen()

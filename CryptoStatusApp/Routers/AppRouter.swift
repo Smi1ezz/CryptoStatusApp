@@ -21,14 +21,10 @@ final class AppRouter: AppRouterType {
 
     func showRootScreen() {
         if UserDefaults.standard.bool(forKey: UserDefaultsKeys.isLoginPassed.rawValue) {
-            // вход без логина и пароля
-
-//            let viewController = GlobalBuilder.shared.buildAnotherVC()
-
-//            let navigationVC = UINavigationController(rootViewController: viewController)
-//            self.navigationVC = navigationVC
+            let viewController = GlobalBuilder.shared.buildMainVC()
+            let navigationVC = UINavigationController(rootViewController: viewController)
+            self.navigationVC = navigationVC
         } else {
-//            let loginVC = LoginViewController(presenter: LoginPresenter())
             let loginVC = GlobalBuilder.shared.buildLoginVC()
             let navigationVC = UINavigationController(rootViewController: loginVC)
             self.navigationVC = navigationVC

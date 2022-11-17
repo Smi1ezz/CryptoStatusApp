@@ -7,10 +7,15 @@
 
 import Foundation
 
+protocol DetailableCoin {
+    var status: Status? {get set}
+    var data: DataStruct? {get set}
+}
+
 // MARK: - FullDetailsResponse
-struct CryptoCoinRespModel: Codable {
-    let status: Status?
-    let data: DataStruct?
+struct CryptoCoinRespModel: Codable, DetailableCoin {
+    var status: Status?
+    var data: DataStruct?
 }
 
 // MARK: - DataStruct

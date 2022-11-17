@@ -1,5 +1,5 @@
 //
-//  LoginRouter.swift
+//  MainRouter.swift
 //  CryptoStatusApp
 //
 //  Created by admin on 15.11.2022.
@@ -8,11 +8,11 @@
 import Foundation
 import UIKit
 
-protocol LoginRouterProtocol {
+protocol MainRouterProtocol {
     func showRootScreen()
 }
 
-final class LoginRouter: LoginRouterProtocol {
+final class MainRouter: MainRouterProtocol {
     func showRootScreen() {
         if let delegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
             delegate.appRouter?.showRootScreen()

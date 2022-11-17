@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum CoinNames: String {
+enum CoinNames: String, CaseIterable {
     case btc, eth, tron, luna, polkadot, dogecoin, tether, stellar, cardano, xrp
 }
 

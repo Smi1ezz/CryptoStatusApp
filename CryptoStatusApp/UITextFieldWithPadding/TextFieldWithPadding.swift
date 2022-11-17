@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TextFieldWithPadding: UITextField {
+final class TextFieldWithPadding: UITextField {
     var textPadding = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
 
     func makePadding(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat) {

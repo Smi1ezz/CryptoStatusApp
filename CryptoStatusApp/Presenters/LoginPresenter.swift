@@ -8,9 +8,12 @@
 import Foundation
 import UIKit
 
-protocol LoginPresenterProtocol {
-    func setDelegateVC(_ delegate: LoginViewControllerDelegate)
-    func tryToLogIn(name: String, password: String)
+protocol LogInAblePresenter {
+    func tryToLogIn(name: String, password: String) throws
+}
+
+protocol LoginPresenterProtocol: LogInAblePresenter {
+    func setDelegateVC(_ delegate: LoginViewControllerProtocol)
 }
 
 final class LoginPresenter: LoginPresenterProtocol {
@@ -18,7 +21,7 @@ final class LoginPresenter: LoginPresenterProtocol {
     private let inputChecker: CheckProtocol
     private var userModel: UserModelProtocol?
 
-    weak var presentedViewController: LoginViewControllerDelegate?
+    weak var presentedViewController: LoginViewControllerProtocol?
 
     init(router: LoginRouterProtocol, checker: CheckProtocol, user: UserModelProtocol) {
         self.loginRouter = router
@@ -26,13 +29,13 @@ final class LoginPresenter: LoginPresenterProtocol {
         self.userModel = user
     }
 
-    func setDelegateVC(_ delegate: LoginViewControllerDelegate) {
+    func setDelegateVC(_ delegate: LoginViewControllerProtocol) {
         self.presentedViewController = delegate
     }
 
-    func tryToLogIn(name: String, password: String) {
+    func tryToLogIn(name: String, password: String) throws {
         guard let correctUser = self.userModel else {
-            return
+            throw ErrorLogin.correctUserNotAvailable
         }
         inputChecker.setCorrect(user: correctUser)
 
@@ -40,15 +43,15 @@ final class LoginPresenter: LoginPresenterProtocol {
 
         if inputChecker.check(user: inputUser) {
             presentedViewController?.successEntrance()
+            UserDefaults.standard.set(true, forKey: UserDefaultsKeys.isLoginPassed.rawValue)
+
             let successAnimationDuration = 0.3
-            DispatchQueue.main.asyncAfter(deadline: .now() + successAnimationDuration) {
-                if let delegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
-                    UserDefaults.standard.set(true, forKey: UserDefaultsKeys.isLoginPassed.rawValue)
-                    delegate.appRouter?.showRootScreen()
-                }
+            DispatchQueue.main.asyncAfter(deadline: .now() + successAnimationDuration) { [weak self] in
+                self?.loginRouter.showRootScreen()
             }
         } else {
             presentedViewController?.failEntranse()
+            throw ErrorLogin.wrongInput
         }
     }
 }

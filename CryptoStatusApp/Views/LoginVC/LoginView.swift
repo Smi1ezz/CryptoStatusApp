@@ -18,6 +18,7 @@ class LoginScrollView: UIScrollView {
         label.text = "Add login and password"
         label.textAlignment = .center
         label.textColor = .black
+        label.font = UIFont.bigAppFont()
         return label
     }()
 
@@ -52,8 +53,8 @@ class LoginScrollView: UIScrollView {
 
     private let checkPassAndLogButton: UIButton = {
         let button = UIButton(type: .system)
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .blue
+        button.setTitle("LogIn", for: .normal)
         button.layer.cornerRadius = 10
         button.makeShadow(color: .black, opacity: 0.5, offSet: .zero, radius: 3)
         return button
@@ -127,6 +128,27 @@ class LoginScrollView: UIScrollView {
             make.trailing.equalTo(entranceView.snp.trailing).offset(-20)
             make.height.equalTo(30)
             make.width.equalTo(60)
+        }
+    }
+}
+
+extension LoginScrollView: ErrorShowableView {
+    func showError(_ error: Error) {
+        let errorLabel: UILabel = {
+            let errorLabel = UILabel()
+            errorLabel.text = (error as? ErrorLogin)?.rawValue
+            errorLabel.textColor = .red
+            errorLabel.textAlignment = .center
+            errorLabel.font = UIFont.mediumAppFont()
+            return errorLabel
+        }()
+        containerView.addSubview(errorLabel)
+        errorLabel.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.top.equalTo(entranceView.snp.bottom).offset(20)
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            errorLabel.removeFromSuperview()
         }
     }
 }

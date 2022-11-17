@@ -4,7 +4,7 @@
 //
 //  Created by admin on 15.11.2022.
 //
-import Foundation
+
 import UIKit
 
 final class GlobalBuilder {
@@ -23,6 +23,9 @@ final class GlobalBuilder {
     }
 
     func buildMainVC() -> UIViewController {
-        return MainViewController()
+        let mainRouter = MainRouter()
+        let networkManager = CryptoNetworkManager()
+        let mainPresenter = MainPresenter(router: mainRouter, networkManager: networkManager, cryptoCoinsModel: nil)
+        return MainViewController(presenter: mainPresenter)
     }
 }
