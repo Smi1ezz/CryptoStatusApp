@@ -12,8 +12,8 @@ protocol LogInAblePresenter {
     func tryToLogIn(name: String, password: String) throws
 }
 
-protocol LoginPresenterProtocol: LogInAblePresenter {
-    func setDelegateVC(_ delegate: LoginViewControllerProtocol)
+protocol LoginPresenterProtocol: PresenterProtocol, LogInAblePresenter {
+
 }
 
 final class LoginPresenter: LoginPresenterProtocol {
@@ -29,8 +29,8 @@ final class LoginPresenter: LoginPresenterProtocol {
         self.userModel = user
     }
 
-    func setDelegateVC(_ delegate: LoginViewControllerProtocol) {
-        self.presentedViewController = delegate
+    func setDelegateVC(_ delegate: UIViewController) {
+        self.presentedViewController = delegate as? LoginViewControllerProtocol
     }
 
     func tryToLogIn(name: String, password: String) throws {

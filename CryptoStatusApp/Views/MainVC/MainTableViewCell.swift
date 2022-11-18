@@ -45,13 +45,13 @@ final class MainTableViewCell: UITableViewCell {
         return priceBtc
     }()
 
-    private let percentCngUsdLastHour: UILabel = {
+    private let percentCngUsdLast24Hour: UILabel = {
         let percentCngUsdLastHour = UILabel()
         percentCngUsdLastHour.font = UIFont.smallAppFont()
         return percentCngUsdLastHour
     }()
 
-    private let percentCngBtcLastHour: UILabel = {
+    private let percentCngBtcLast24Hour: UILabel = {
         let percentCngBtcLastHour = UILabel()
         percentCngBtcLastHour.font = UIFont.smallAppFont()
         return percentCngBtcLastHour
@@ -68,31 +68,21 @@ final class MainTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        self.resignFirstResponder()
     }
 
     func setupCell(details coin: DetailableCoin) {
         symbolLabel.text = coin.data?.symbol
         nameLabel.text = coin.data?.name
-        priceUsd.text = "price: " + correctDetail(coin.data?.marketData?.priceUsd) + " $"
-        priceBtc.text = "price: " + correctDetail(coin.data?.marketData?.priceBtc) + " btc"
-        percentCngUsdLastHour.text = "delta 24h: " + correctDetail(coin.data?.marketData?.percentChangeUsdLast24Hours) + " %"
-        percentCngBtcLastHour.text = "delta 24h: " + correctDetail(coin.data?.marketData?.percentChangeBtcLast24Hours) + " %"
-    }
-
-    private func correctDetail<T>(_ detail: T?) -> String {
-        guard let detail = detail else {
-            return "-"
-        }
-        guard let double = detail as? Double else {
-            return "\(detail)"
-        }
-        return String(format: "%.3f", double)
+        priceUsd.text = "price: " + GlobalCorrector.shared.correctDetail(coin.data?.marketData?.priceUsd, accuracy: 3) + " $"
+        priceBtc.text = "price: " + GlobalCorrector.shared.correctDetail(coin.data?.marketData?.priceBtc, accuracy: 3) + " btc"
+        percentCngUsdLast24Hour.text = "delta 24h: " + GlobalCorrector.shared.correctDetail(coin.data?.marketData?.percentChangeUsdLast24Hours, accuracy: 3) + " %"
+        percentCngBtcLast24Hour.text = "delta 24h: " + GlobalCorrector.shared.correctDetail(coin.data?.marketData?.percentChangeBtcLast24Hours, accuracy: 3) + " %"
     }
 
     private func setupSubviews() {
         symbolShadowView.addSubview(symbolLabel)
-        [symbolShadowView, nameLabel, priceBtc, priceUsd, percentCngBtcLastHour, percentCngUsdLastHour].forEach { contentView.addSubview($0)
+        [symbolShadowView, nameLabel, priceBtc, priceUsd, percentCngBtcLast24Hour, percentCngUsdLast24Hour].forEach { contentView.addSubview($0)
         }
         setupConstraints()
 
@@ -124,14 +114,14 @@ final class MainTableViewCell: UITableViewCell {
             make.leading.equalTo(priceUsd.snp.trailing).offset(10)
         }
 
-        percentCngUsdLastHour.snp.makeConstraints { make in
+        percentCngUsdLast24Hour.snp.makeConstraints { make in
             make.top.equalTo(priceUsd.snp.bottom).offset(5)
             make.leading.equalTo(nameLabel.snp.leading)
         }
 
-        percentCngBtcLastHour.snp.makeConstraints { make in
+        percentCngBtcLast24Hour.snp.makeConstraints { make in
             make.top.equalTo(priceBtc.snp.bottom).offset(5)
-            make.leading.equalTo(percentCngUsdLastHour.snp.trailing).offset(10)
+            make.leading.equalTo(percentCngUsdLast24Hour.snp.trailing).offset(10)
             make.bottom.equalToSuperview().offset(-10)
         }
     }

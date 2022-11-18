@@ -6,6 +6,11 @@
 //
 
 import Foundation
+import UIKit
+
+protocol PresenterProtocol {
+    func setDelegateVC(_ delegate: UIViewController)
+}
 
 protocol SortablePresenter {
     var sortMode: SortMode? {get}
@@ -16,9 +21,12 @@ protocol LogOutAblePresenter {
     func logOut()
 }
 
-protocol MainPresenterProtocol: SortablePresenter, LogOutAblePresenter {
+protocol CanShowDetailsPresenter {
+    func showDetailsVC(about data: DetailableCoin)
+}
+
+protocol MainPresenterProtocol: PresenterProtocol, SortablePresenter, LogOutAblePresenter, CanShowDetailsPresenter {
     var cryptoCoinsModelStorage: [CryptoCoinRespModel]? {get}
-    func setDelegateVC(_ delegate: MainViewControllerProtocol)
     func getCoins()
 }
 
@@ -45,8 +53,8 @@ final class MainPresenter: MainPresenterProtocol {
         self.cryptoCoinsModelStorage = cryptoCoinsModel
     }
 
-    func setDelegateVC(_ delegate: MainViewControllerProtocol) {
-        self.presentedVC = delegate
+    func setDelegateVC(_ delegate: UIViewController) {
+        self.presentedVC = delegate as? MainViewControllerProtocol
     }
 
     func getCoins() {
@@ -89,6 +97,10 @@ final class MainPresenter: MainPresenterProtocol {
             self.sortMode = .hiPriceFirst
             sortPriceFromHiToLo()
         }
+    }
+
+    func showDetailsVC(about data: DetailableCoin) {
+        router.showDetailsVC(about: data)
     }
 
     func logOut() {

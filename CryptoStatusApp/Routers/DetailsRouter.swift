@@ -1,18 +1,18 @@
 //
-//  LoginRouter.swift
+//  DetailsRouter.swift
 //  CryptoStatusApp
 //
-//  Created by admin on 15.11.2022.
+//  Created by admin on 18.11.2022.
 //
 
 import Foundation
 import UIKit
 
-protocol LoginRouterProtocol: AppRouterType {
+protocol DetailsRouterProtocol: AppRouterType {
 
 }
 
-final class LoginRouter: LoginRouterProtocol {
+final class DetailsRouter: DetailsRouterProtocol {
     func showRootScreen() {
         if let delegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
             delegate.appRouter?.showRootScreen()

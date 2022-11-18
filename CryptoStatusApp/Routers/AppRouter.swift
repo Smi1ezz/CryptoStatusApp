@@ -12,12 +12,7 @@ protocol AppRouterType: AnyObject {
 }
 
 final class AppRouter: AppRouterType {
-    private(set) var window: UIWindow
     private var navigationVC: UINavigationController?
-
-    init(window: UIWindow) {
-        self.window = window
-    }
 
     func showRootScreen() {
         if UserDefaults.standard.bool(forKey: UserDefaultsKeys.isLoginPassed.rawValue) {
@@ -30,11 +25,8 @@ final class AppRouter: AppRouterType {
             self.navigationVC = navigationVC
         }
 
-        window.rootViewController = navigationVC
-        window.makeKeyAndVisible()
-
         if let delegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
-                delegate.window = window
+            delegate.window?.rootViewController = navigationVC
         }
     }
 }

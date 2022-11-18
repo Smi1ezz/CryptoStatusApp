@@ -37,7 +37,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
 
         let mainWindow = UIWindow(windowScene: scene)
-        appRouter = AppRouter(window: mainWindow)
+
+        window = mainWindow
+        window?.makeKeyAndVisible()
+        appRouter = AppRouter()
         appRouter?.showRootScreen()
 
     }

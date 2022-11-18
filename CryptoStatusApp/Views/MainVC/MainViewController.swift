@@ -106,6 +106,7 @@ extension MainViewController: MainViewControllerProtocol {
             errorLabel.font = UIFont.mediumAppFont()
             return errorLabel
         }()
+
         if let text = (error as? ErrorNetwork)?.rawValue {
             errorLabel.text = text
         } else if let text = (error as? AppError)?.rawValue {
@@ -123,7 +124,16 @@ extension MainViewController: MainViewControllerProtocol {
 
 // MARK: ext for UITableViewDelegate
 extension MainViewController: UITableViewDelegate {
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        do {
+            guard let storage = presenter.cryptoCoinsModelStorage else {
+                throw AppError.emptyStorage
+            }
+            presenter.showDetailsVC(about: storage[indexPath.row])
+        } catch {
+            print(error)
+        }
+    }
 }
 
 // MARK: ext for UITableViewDataSource

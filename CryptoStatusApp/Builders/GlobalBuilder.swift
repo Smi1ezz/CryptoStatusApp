@@ -28,4 +28,10 @@ final class GlobalBuilder {
         let mainPresenter = MainPresenter(router: mainRouter, networkManager: networkManager, cryptoCoinsModel: nil)
         return MainViewController(presenter: mainPresenter)
     }
+
+    func buildDetailsVC(about data: DetailableCoin) -> UIViewController {
+        let detailsRouter = DetailsRouter()
+        let detailsPresenter = DetailsPresenter(router: detailsRouter, coin: data)
+        return DetailsViewController(presenter: detailsPresenter)
+    }
 }
