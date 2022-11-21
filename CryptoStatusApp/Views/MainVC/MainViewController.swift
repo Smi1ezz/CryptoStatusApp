@@ -10,6 +10,7 @@ import SnapKit
 
 protocol ErrorShowableView {
     func showError(_ error: Error)
+    func showAlert(error: Error)
 }
 
 protocol SpinnerableView {
@@ -116,9 +117,25 @@ extension MainViewController: MainViewControllerProtocol {
         errorLabel.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             errorLabel.removeFromSuperview()
         }
+    }
+
+    func showAlert(error: Error) {
+        let alert = UIAlertController(title: "\(error)",
+                                      message: "Want to try to reconnect? Press Repeat",
+                                      preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "Repeat", style: .default, handler: { [weak self] _ in
+            self?.presenter.getCoins()
+        }))
+
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+            fatalError("Fatal error. Aplication closed")
+        }))
+
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

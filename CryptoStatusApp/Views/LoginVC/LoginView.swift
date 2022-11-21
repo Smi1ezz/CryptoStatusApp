@@ -133,6 +133,10 @@ class LoginScrollView: UIScrollView {
 }
 
 extension LoginScrollView: ErrorShowableView {
+    func showAlert(error: Error) {
+
+    }
+
     func showError(_ error: Error) {
         let errorLabel: UILabel = {
             let errorLabel = UILabel()

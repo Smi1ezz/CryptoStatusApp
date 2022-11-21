@@ -36,6 +36,9 @@ final class MainPresenter: MainPresenterProtocol {
     private let networkManager: CryptoNetworkManagerProtocol
     private var availableCoins = CoinNames.allCases
 
+    private var isLoadingFails = false
+    private var connectionRepeat = 0
+
     var sortMode: SortMode?
     var cryptoCoinsModelStorage: [CryptoCoinRespModel]? {
         didSet {
@@ -62,26 +65,72 @@ final class MainPresenter: MainPresenterProtocol {
             presentedVC?.showError(AppError.coinsToFetchAreNotAvailable)
             return
         }
+
         presentedVC?.startSpinner()
         var gettedCoins = [CryptoCoinRespModel]()
         let group = DispatchGroup()
+        var errorToAlert: Error?
+
         for coin in availableCoins {
             group.enter()
-            networkManager.fetchDataModelType(endpoint: Endpoint.getCoin(name: coin), modelType: CryptoCoinRespModel.self) { result in
-                switch result {
-                case .success(let coinModel):
-                    gettedCoins.append(coinModel)
-                    group.leave()
 
-                case .failure(let error):
-                    self.presentedVC?.showError(error)
-                    group.leave()
-                }
+            guard !isLoadingFails else {
+                print("isLoadingFails == true break")
+                group.leave()
+                break
             }
+
+            networkManager.fetchDataModelType(endpoint: Endpoint.getCoin(name: coin), modelType: CryptoCoinRespModel.self) { [weak self] result in
+                    switch result {
+                    case .success(let coinModel):
+                        gettedCoins.append(coinModel)
+                        group.leave()
+                        print(".success needs append")
+
+                    case .failure(let error):
+                        self?.isLoadingFails = true
+                        errorToAlert = error
+                        self?.presentedVC?.showError(error)
+                        group.leave()
+                        print(".failure needs break")
+                    }
+                }
         }
-        group.notify(queue: .main) {
-            self.presentedVC?.stopSpinner()
-            self.cryptoCoinsModelStorage = gettedCoins.filter({ $0.data?.name != nil })
+
+        group.notify(queue: .main) { [weak self] in
+            print("group.notify")
+
+            guard let self = self else {
+                print("self = self")
+                return
+            }
+
+            guard self.isLoadingFails else {
+                self.presentedVC?.stopSpinner()
+                self.cryptoCoinsModelStorage = gettedCoins.filter({ $0.data?.name != nil })
+                return
+            }
+
+            if self.connectionRepeat < 3 {
+                self.connectionRepeat += 1
+                print("try to reconnect \(self.connectionRepeat)")
+
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    self.isLoadingFails = false
+                    self.getCoins()
+                    return
+                }
+                return
+            }
+
+            print("self.connectionRepeat = 0")
+
+            self.connectionRepeat = 0
+            self.isLoadingFails = false
+            guard let errorToAlert = errorToAlert else {
+                return
+            }
+            self.showAlert(error: errorToAlert)
         }
     }
 
@@ -130,5 +179,9 @@ final class MainPresenter: MainPresenterProtocol {
             }
             return firstPrise < secondPrice
         })
+    }
+
+    private func showAlert(error: Error) {
+        presentedVC?.showAlert(error: error)
     }
 }

@@ -20,6 +20,7 @@ struct CryptoCoinRespModel: Codable, DetailableCoin {
 
 // MARK: - DataStruct
 struct DataStruct: Codable {
+    let jjdj: String
     let id: String?
     let serialID: Int?
     let symbol: String?
@@ -28,6 +29,7 @@ struct DataStruct: Codable {
     let developerActivity: DeveloperActivity?
 
     enum CodingKeys: String, CodingKey {
+        case jjdj
         case id
         case serialID = "serial_id"
         case symbol, name

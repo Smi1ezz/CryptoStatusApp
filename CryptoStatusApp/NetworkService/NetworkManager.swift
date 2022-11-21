@@ -17,6 +17,8 @@
 
      func fetchDataModelType<T: Codable>(endpoint: EndpointProtocol, modelType: T.Type, complition: @escaping (Swift.Result<T, Error>) -> Void) {
 
+         print("Task starts")
+
          guard let request = endpoint.makeURLRequest(method: .GET) else {
             return
         }
@@ -26,6 +28,7 @@
 
              defer {
                  DispatchQueue.main.async {
+                     print("WTF???!!")
                      complition(result)
                  }
              }
@@ -33,6 +36,7 @@
              if error == nil, let parsData = data {
                  do {
                      let resultOfRequest = try JSONDecoder().decode(modelType.self, from: parsData)
+                     print("success??")
                      result = .success(resultOfRequest)
                  } catch {
                      guard let resp = response as? HTTPURLResponse else {
@@ -43,6 +47,7 @@
                      print("response statusCode: \(String(resp.statusCode))")
                      switch resp.statusCode {
                      case 200..<300:
+                         print("+++++ STAtu code")
                          result = .failure(ErrorNetwork.wrongFormatJSON)
                      default:
                          result = .failure(ErrorNetwork.dataNotFound)

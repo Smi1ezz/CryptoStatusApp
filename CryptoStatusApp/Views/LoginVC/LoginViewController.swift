@@ -61,6 +61,10 @@ final class LoginViewController: UIViewController {
 
 // MARK: ext for LoginViewControllerDelegate
 extension LoginViewController: LoginViewControllerProtocol {
+    func showAlert(error: Error) {
+
+    }
+
     func showError(_ error: Error) {
         loginView.showError(error)
     }
