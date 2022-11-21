@@ -11,52 +11,54 @@
      func fetchDataModelType<T: Codable>(endpoint: EndpointProtocol, modelType: T.Type, complition: @escaping (Swift.Result<T, Error>) -> Void)
  }
 
- class CryptoNetworkManager: CryptoNetworkManagerProtocol {
+class CryptoNetworkManager: CryptoNetworkManagerProtocol {
     private let session = URLSession.shared
     private let decoder = JSONDecoder()
 
-     func fetchDataModelType<T: Codable>(endpoint: EndpointProtocol, modelType: T.Type, complition: @escaping (Swift.Result<T, Error>) -> Void) {
+    func fetchDataModelType<T: Codable>(endpoint: EndpointProtocol, modelType: T.Type, complition: @escaping (Swift.Result<T, Error>) -> Void) {
 
-         print("Task starts")
-
-         guard let request = endpoint.makeURLRequest(method: .GET) else {
+        guard let request = endpoint.makeURLRequest(method: .GET) else {
             return
         }
 
-         session.dataTask(with: request) { data, response, error in
-             var result: Swift.Result<T, Error>
+        session.dataTask(with: request) { data, response, error in
+            var result: Swift.Result<T, Error>
 
-             defer {
-                 DispatchQueue.main.async {
-                     print("WTF???!!")
-                     complition(result)
-                 }
-             }
+            defer {
+                DispatchQueue.main.async {
+                    complition(result)
+                }
+            }
 
-             if error == nil, let parsData = data {
-                 do {
-                     let resultOfRequest = try JSONDecoder().decode(modelType.self, from: parsData)
-                     print("success??")
-                     result = .success(resultOfRequest)
-                 } catch {
-                     guard let resp = response as? HTTPURLResponse else {
-                         print("response is not HTTPURLResponse")
-                         result = .failure(ErrorNetwork.wrongResponse)
-                         return
-                     }
-                     print("response statusCode: \(String(resp.statusCode))")
-                     switch resp.statusCode {
-                     case 200..<300:
-                         print("+++++ STAtu code")
-                         result = .failure(ErrorNetwork.wrongFormatJSON)
-                     default:
-                         result = .failure(ErrorNetwork.dataNotFound)
-                     }
-                 }
-             } else {
-                 result = .failure(ErrorNetwork.connectingProblem)
-             }
-         }
-         .resume()
+            guard error == nil else {
+                result = .failure(ErrorNetwork.connectingProblem)
+                return
+            }
+
+            guard let parsData = data else {
+                result = .failure(ErrorNetwork.dataNotFound)
+                return
+            }
+
+            guard let resp = response as? HTTPURLResponse else {
+                result = .failure(ErrorNetwork.wrongResponse)
+                return
+            }
+
+            print("response statusCode: \(String(resp.statusCode))")
+            switch resp.statusCode {
+            case 200..<300:
+                do {
+                    let resultOfRequest = try JSONDecoder().decode(modelType.self, from: parsData)
+                    result = .success(resultOfRequest)
+                } catch {
+                    result = .failure(ErrorNetwork.wrongFormatJSON)
+                }
+
+            default:
+                result = .failure(ErrorNetwork.wrongStatusCode)
+            }
+        }
+        .resume()
     }
- }
+}

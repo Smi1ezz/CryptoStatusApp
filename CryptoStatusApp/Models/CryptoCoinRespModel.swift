@@ -16,11 +16,11 @@ protocol DetailableCoin {
 struct CryptoCoinRespModel: Codable, DetailableCoin {
     var status: Status?
     var data: DataStruct?
+    var zszsz: Int
 }
 
 // MARK: - DataStruct
 struct DataStruct: Codable {
-    let jjdj: String
     let id: String?
     let serialID: Int?
     let symbol: String?
@@ -29,7 +29,6 @@ struct DataStruct: Codable {
     let developerActivity: DeveloperActivity?
 
     enum CodingKeys: String, CodingKey {
-        case jjdj
         case id
         case serialID = "serial_id"
         case symbol, name

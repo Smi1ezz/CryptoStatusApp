@@ -18,6 +18,7 @@ enum ErrorNetwork: String, Error {
     case wrongURL
     case wrongRequest
     case wrongResponse
+    case wrongStatusCode
     case connectingProblem
     case dataNotFound
 }

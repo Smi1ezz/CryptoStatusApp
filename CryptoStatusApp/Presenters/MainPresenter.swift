@@ -72,36 +72,28 @@ final class MainPresenter: MainPresenterProtocol {
         var errorToAlert: Error?
 
         for coin in availableCoins {
-            group.enter()
 
             guard !isLoadingFails else {
-                print("isLoadingFails == true break")
-                group.leave()
                 break
             }
 
+            group.enter()
             networkManager.fetchDataModelType(endpoint: Endpoint.getCoin(name: coin), modelType: CryptoCoinRespModel.self) { [weak self] result in
-                    switch result {
-                    case .success(let coinModel):
-                        gettedCoins.append(coinModel)
-                        group.leave()
-                        print(".success needs append")
-
-                    case .failure(let error):
-                        self?.isLoadingFails = true
-                        errorToAlert = error
-                        self?.presentedVC?.showError(error)
-                        group.leave()
-                        print(".failure needs break")
-                    }
+                switch result {
+                case .success(let coinModel):
+                    gettedCoins.append(coinModel)
+                    group.leave()
+                case .failure(let error):
+                    errorToAlert = error
+                    self?.isLoadingFails = true
+                    self?.presentedVC?.showError(error)
+                    group.leave()
                 }
+            }
         }
 
         group.notify(queue: .main) { [weak self] in
-            print("group.notify")
-
             guard let self = self else {
-                print("self = self")
                 return
             }
 
@@ -114,23 +106,18 @@ final class MainPresenter: MainPresenterProtocol {
             if self.connectionRepeat < 3 {
                 self.connectionRepeat += 1
                 print("try to reconnect \(self.connectionRepeat)")
-
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     self.isLoadingFails = false
                     self.getCoins()
+                }
+            } else {
+                self.connectionRepeat = 0
+                self.isLoadingFails = false
+                guard let errorToAlert = errorToAlert else {
                     return
                 }
-                return
+                self.showAlert(error: errorToAlert)
             }
-
-            print("self.connectionRepeat = 0")
-
-            self.connectionRepeat = 0
-            self.isLoadingFails = false
-            guard let errorToAlert = errorToAlert else {
-                return
-            }
-            self.showAlert(error: errorToAlert)
         }
     }
 
