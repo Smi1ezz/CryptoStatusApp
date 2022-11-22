@@ -10,7 +10,9 @@ import Foundation
 import UIKit
 
 enum CoinNames: String, CaseIterable {
-    case btc, eth, tron, luna, polkadot, dogecoin, tether, stellar, cardano, xrp
+//    case btc, eth, tron, luna, polkadot, dogecoin, tether, stellar, cardano, xrp
+    case btc, eth
+
 }
 
 enum HTTPMethods: String {

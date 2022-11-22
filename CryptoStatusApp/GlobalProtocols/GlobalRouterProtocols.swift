@@ -6,7 +6,12 @@
 //
 
 import Foundation
+import UIKit
 
 protocol AppRouterProtocol: AnyObject {
     func showRootScreen()
+}
+
+protocol RouterProtocol {
+    func setNavigationController(_ naviVC: UINavigationController)
 }

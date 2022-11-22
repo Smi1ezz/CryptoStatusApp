@@ -28,3 +28,7 @@ protocol LogInAblePresenter {
 protocol CanShowDetailsPresenter {
     func showDetailsVC(about data: DetailableCoin)
 }
+
+protocol RoutablePresenter {
+    func setupRouterNavigation()
+}

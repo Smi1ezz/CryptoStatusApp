@@ -65,7 +65,6 @@ final class MainViewController: UIViewController {
     private func logoutButtonPressed() {
         presenter.logOut()
     }
-
 }
 
 // MARK: ext for MainViewControllerProtocol

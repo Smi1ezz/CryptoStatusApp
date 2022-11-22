@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol LoginPresenterProtocol: PresenterProtocol, LogInAblePresenter {
+protocol LoginPresenterProtocol: PresenterProtocol, RoutablePresenter, LogInAblePresenter {
     func addCurrentUser(user: UserModelProtocol)
 }
 
@@ -17,12 +17,23 @@ final class LoginPresenter: LoginPresenterProtocol {
     private let inputChecker: CheckerProtocol
     private var userModel: UserModelProtocol?
 
-    weak var presentedViewController: LoginViewControllerProtocol?
+    weak var presentedViewController: LoginViewControllerProtocol? {
+        didSet {
+            setupRouterNavigation()
+        }
+    }
 
     init(router: LoginRouterProtocol, checker: CheckerProtocol, user: UserModelProtocol? = nil) {
         self.loginRouter = router
         self.inputChecker = checker
         self.userModel = user
+    }
+
+    func setupRouterNavigation() {
+        guard let naviVC = (presentedViewController as? UIViewController)?.navigationController else {
+            return
+        }
+        self.loginRouter.setNavigationController(naviVC)
     }
 
     func setDelegateVC(_ delegate: UIViewController) {

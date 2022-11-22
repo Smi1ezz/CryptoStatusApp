@@ -8,11 +8,17 @@
 import Foundation
 import UIKit
 
-protocol MainRouterProtocol: AppRouterProtocol {
+protocol MainRouterProtocol: AppRouterProtocol, RouterProtocol {
     func showDetailsVC(about data: DetailableCoin)
 }
 
 final class MainRouter: MainRouterProtocol {
+    weak private var navigationVC: UINavigationController?
+
+    func setNavigationController(_ naviVC: UINavigationController) {
+        self.navigationVC = naviVC
+    }
+
     func showRootScreen() {
         if let delegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
             delegate.appRouter?.showRootScreen()
@@ -21,8 +27,6 @@ final class MainRouter: MainRouterProtocol {
 
     func showDetailsVC(about data: DetailableCoin) {
         let detailsVC = GlobalBuilder.shared.buildDetailsVC(about: data)
-        if let delegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
-            (delegate.window?.rootViewController as? UINavigationController)?.pushViewController(detailsVC, animated: true)
-        }
+        navigationVC?.pushViewController(detailsVC, animated: true)
     }
 }

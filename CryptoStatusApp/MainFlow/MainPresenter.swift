@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol MainPresenterProtocol: PresenterProtocol, SortablePresenter, LogOutAblePresenter, CanShowDetailsPresenter {
+protocol MainPresenterProtocol: PresenterProtocol, RoutablePresenter, SortablePresenter, LogOutAblePresenter, CanShowDetailsPresenter {
     var cryptoCoinsModelStorage: [CryptoCoinRespModel]? {get}
     func getCoins()
 }
@@ -32,7 +32,11 @@ final class MainPresenter: MainPresenterProtocol {
         }
     }
 
-    weak var presentedVC: MainViewControllerProtocol?
+    weak var presentedVC: MainViewControllerProtocol? {
+        didSet {
+            setupRouterNavigation()
+        }
+    }
 
     init(router: MainRouterProtocol, networkManager: CryptoNetworkManagerProtocol, cryptoCoinsModel: [CryptoCoinRespModel]? = nil) {
         self.router = router
@@ -42,6 +46,13 @@ final class MainPresenter: MainPresenterProtocol {
 
     func setDelegateVC(_ delegate: UIViewController) {
         self.presentedVC = delegate as? MainViewControllerProtocol
+    }
+
+    func setupRouterNavigation() {
+        guard let naviVC = (presentedVC as? UIViewController)?.navigationController else {
+            return
+        }
+        self.router.setNavigationController(naviVC)
     }
 
     func getCoins() {
