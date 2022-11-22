@@ -139,6 +139,36 @@
 			path = GlobalProtocols;
 			sourceTree = "<group>";
 		};
+		842D71D2292CCF7A00271C3D /* LoginFlow */ = {
+			isa = PBXGroup;
+			children = (
+				84DC94EE2923991000281FA5 /* LoginRouter.swift */,
+				84DC94EC292396D400281FA5 /* LoginPresenter.swift */,
+				84DC94D329159B7E00281FA5 /* LoginVC */,
+			);
+			path = LoginFlow;
+			sourceTree = "<group>";
+		};
+		842D71D3292CCFBF00271C3D /* MainFlow */ = {
+			isa = PBXGroup;
+			children = (
+				84DC94F72923D89700281FA5 /* MainRouter.swift */,
+				84DC94F92923D91300281FA5 /* MainPresenter.swift */,
+				84DC94F62923D77200281FA5 /* MainVC */,
+			);
+			path = MainFlow;
+			sourceTree = "<group>";
+		};
+		842D71D4292CCFE500271C3D /* DetailsFlow */ = {
+			isa = PBXGroup;
+			children = (
+				84DC95142927633600281FA5 /* DetailsRouter.swift */,
+				84DC95162927642600281FA5 /* DetailsPresenter.swift */,
+				84DC950B2926753500281FA5 /* DetailsVC */,
+			);
+			path = DetailsFlow;
+			sourceTree = "<group>";
+		};
 		84DC94A62915212900281FA5 = {
 			isa = PBXGroup;
 			children = (
@@ -161,22 +191,23 @@
 			isa = PBXGroup;
 			children = (
 				842D71C8292CB75B00271C3D /* GlobalProtocols */,
-				842D71C5292BE0B000271C3D /* Colors */,
+				842D71D4292CCFE500271C3D /* DetailsFlow */,
+				842D71D3292CCFBF00271C3D /* MainFlow */,
+				842D71D2292CCF7A00271C3D /* LoginFlow */,
+				84DC94F029239A4D00281FA5 /* Models */,
+				84DC94CE29159AE600281FA5 /* AppRouters */,
 				84DC951829278DB200281FA5 /* Correctors */,
-				84DC94CE29159AE600281FA5 /* Routers */,
+				84DC94F32923AD6000281FA5 /* Builders */,
+				84DC94C72915373300281FA5 /* NetworkService */,
+				84DC94E6292266AF00281FA5 /* LoginPasswordChecker */,
+				842D71C5292BE0B000271C3D /* Colors */,
 				84DC94FF2925009A00281FA5 /* Errors */,
 				84DC95052926303700281FA5 /* SortModeEnum */,
-				84DC94F32923AD6000281FA5 /* Builders */,
-				84DC94E6292266AF00281FA5 /* LoginPasswordChecker */,
-				84DC94F029239A4D00281FA5 /* Models */,
-				84DC94D229159B5400281FA5 /* Views */,
-				84DC94EB292396B200281FA5 /* Presenters */,
 				84DC9508292632FF00281FA5 /* UIFontExt */,
 				84DC94E32922644800281FA5 /* UIViewControllerKeybordExt */,
 				84DC94DE29225A1300281FA5 /* UITextFieldWithPadding */,
 				84DC94DB2922557E00281FA5 /* UIViewExt */,
 				84DC94D629159F6700281FA5 /* UserDefaultsKeys */,
-				84DC94C72915373300281FA5 /* NetworkService */,
 				84DC94B22915212900281FA5 /* AppDelegate.swift */,
 				84DC94B42915212900281FA5 /* SceneDelegate.swift */,
 				84DC94BB2915212F00281FA5 /* Assets.xcassets */,
@@ -195,25 +226,12 @@
 			path = NetworkService;
 			sourceTree = "<group>";
 		};
-		84DC94CE29159AE600281FA5 /* Routers */ = {
+		84DC94CE29159AE600281FA5 /* AppRouters */ = {
 			isa = PBXGroup;
 			children = (
 				84DC94CF29159AFD00281FA5 /* AppRouter.swift */,
-				84DC94EE2923991000281FA5 /* LoginRouter.swift */,
-				84DC94F72923D89700281FA5 /* MainRouter.swift */,
-				84DC95142927633600281FA5 /* DetailsRouter.swift */,
 			);
-			path = Routers;
-			sourceTree = "<group>";
-		};
-		84DC94D229159B5400281FA5 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				84DC950B2926753500281FA5 /* DetailsVC */,
-				84DC94F62923D77200281FA5 /* MainVC */,
-				84DC94D329159B7E00281FA5 /* LoginVC */,
-			);
-			path = Views;
+			path = AppRouters;
 			sourceTree = "<group>";
 		};
 		84DC94D329159B7E00281FA5 /* LoginVC */ = {
@@ -265,16 +283,6 @@
 				84DC94E7292266D100281FA5 /* Checker.swift */,
 			);
 			path = LoginPasswordChecker;
-			sourceTree = "<group>";
-		};
-		84DC94EB292396B200281FA5 /* Presenters */ = {
-			isa = PBXGroup;
-			children = (
-				84DC94EC292396D400281FA5 /* LoginPresenter.swift */,
-				84DC94F92923D91300281FA5 /* MainPresenter.swift */,
-				84DC95162927642600281FA5 /* DetailsPresenter.swift */,
-			);
-			path = Presenters;
 			sourceTree = "<group>";
 		};
 		84DC94F029239A4D00281FA5 /* Models */ = {
