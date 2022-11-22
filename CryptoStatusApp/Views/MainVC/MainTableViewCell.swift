@@ -15,7 +15,7 @@ final class MainTableViewCell: UITableViewCell {
         symbolLabel.adjustsFontSizeToFitWidth = true
         symbolLabel.font = UIFont.bigAppFont()
         symbolLabel.textColor = .black
-        symbolLabel.backgroundColor = .green
+        symbolLabel.backgroundColor = .appColor(name: .appGreen)
         symbolLabel.makeBorder(borderColor: .black, borderWidth: 0.5, cornerRadius: 30)
         return symbolLabel
     }()
@@ -59,6 +59,7 @@ final class MainTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        backgroundColor = .appColor(name: .cellBackgroundGreen)
         setupSubviews()
     }
 
@@ -66,9 +67,14 @@ final class MainTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        self.resignFirstResponder()
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        super.setHighlighted(highlighted, animated: animated)
+
+        if highlighted {
+            contentView.backgroundColor = .appColor(name: .appGreen)
+        } else {
+            contentView.backgroundColor = .appColor(name: .cellBackgroundGreen)
+        }
     }
 
     func setupCell(details coin: DetailableCoin) {
@@ -85,7 +91,6 @@ final class MainTableViewCell: UITableViewCell {
         [symbolShadowView, nameLabel, priceBtc, priceUsd, percentCngBtcLast24Hour, percentCngUsdLast24Hour].forEach { contentView.addSubview($0)
         }
         setupConstraints()
-
     }
 
     private func setupConstraints() {
@@ -125,5 +130,4 @@ final class MainTableViewCell: UITableViewCell {
             make.bottom.equalToSuperview().offset(-10)
         }
     }
-
 }

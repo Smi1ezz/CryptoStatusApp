@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class LoginScrollView: UIScrollView {
+final class LoginScrollView: UIScrollView {
     // MARK: Properties
 
     private let containerView = UIView()
@@ -17,14 +17,14 @@ class LoginScrollView: UIScrollView {
        let label = UILabel()
         label.text = "Add login and password"
         label.textAlignment = .center
-        label.textColor = .black
+        label.textColor = UIColor.appColor(name: .appGreen)
         label.font = UIFont.bigAppFont()
         return label
     }()
 
     private let entranceView: UIView = {
         let entranceStackView = UIView()
-        entranceStackView.backgroundColor = .systemGray5
+        entranceStackView.backgroundColor = UIColor.appColor(name: .loginViewGreen)
         entranceStackView.makeBorder(borderColor: .darkGray, borderWidth: 0.5, cornerRadius: 10)
         entranceStackView.makeShadow(color: .black, opacity: 0.5, offSet: .zero, radius: 3)
         return entranceStackView
@@ -34,7 +34,7 @@ class LoginScrollView: UIScrollView {
        let loginTextField = TextFieldWithPadding()
         loginTextField.tag = 1
         loginTextField.placeholder = "Login"
-        loginTextField.backgroundColor = .white
+        loginTextField.backgroundColor = UIColor.appColor(name: .loginViewGreen)
         loginTextField.clearButtonMode = .whileEditing
         loginTextField.makeBorder(borderColor: .darkGray, borderWidth: 0.5, cornerRadius: 10)
         return loginTextField
@@ -45,7 +45,7 @@ class LoginScrollView: UIScrollView {
         passTextField.tag = 2
         passTextField.placeholder = "Password"
         passTextField.isSecureTextEntry = true
-        passTextField.backgroundColor = .white
+        passTextField.backgroundColor = UIColor.appColor(name: .loginViewGreen)
         passTextField.clearButtonMode = .whileEditing
         passTextField.makeBorder(borderColor: .darkGray, borderWidth: 0.5, cornerRadius: 10)
         return passTextField
@@ -53,7 +53,8 @@ class LoginScrollView: UIScrollView {
 
     private let checkPassAndLogButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = .blue
+        button.backgroundColor = UIColor.appColor(name: .appGreen)
+        button.tintColor = UIColor.appColor(name: .backgroundBlack)
         button.setTitle("LogIn", for: .normal)
         button.layer.cornerRadius = 10
         button.makeShadow(color: .black, opacity: 0.5, offSet: .zero, radius: 3)
@@ -151,7 +152,7 @@ extension LoginScrollView: ErrorShowableView {
             make.leading.trailing.equalToSuperview()
             make.top.equalTo(entranceView.snp.bottom).offset(20)
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             errorLabel.removeFromSuperview()
         }
     }

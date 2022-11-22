@@ -8,23 +8,6 @@
 import Foundation
 import UIKit
 
-protocol PresenterProtocol {
-    func setDelegateVC(_ delegate: UIViewController)
-}
-
-protocol SortablePresenter {
-    var sortMode: SortMode? {get}
-    func sortByUSDPrice()
-}
-
-protocol LogOutAblePresenter {
-    func logOut()
-}
-
-protocol CanShowDetailsPresenter {
-    func showDetailsVC(about data: DetailableCoin)
-}
-
 protocol MainPresenterProtocol: PresenterProtocol, SortablePresenter, LogOutAblePresenter, CanShowDetailsPresenter {
     var cryptoCoinsModelStorage: [CryptoCoinRespModel]? {get}
     func getCoins()
@@ -40,6 +23,7 @@ final class MainPresenter: MainPresenterProtocol {
     private var connectionRepeat = 0
 
     var sortMode: SortMode?
+
     var cryptoCoinsModelStorage: [CryptoCoinRespModel]? {
         didSet {
             DispatchQueue.main.async { [weak self] in

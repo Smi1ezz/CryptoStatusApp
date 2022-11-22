@@ -7,13 +7,14 @@
 //https://data.messari.io/api/v1/assets/trx/metrics
 
 import Foundation
+import UIKit
 
 enum CoinNames: String, CaseIterable {
     case btc, eth, tron, luna, polkadot, dogecoin, tether, stellar, cardano, xrp
 }
 
 enum HTTPMethods: String {
-    case GET, SET, POST, DELETE
+    case GET, PUT, POST, DELETE
 }
 
 protocol EndpointProtocol {
@@ -23,7 +24,7 @@ protocol EndpointProtocol {
     var path: String {get}
     var parameters: [URLQueryItem] {get}
     var strURL: String? {get}
-    func makeURLRequest(method: HTTPMethods) -> URLRequest?
+    func makeURLRequest(method: HTTPMethods) throws -> URLRequest
 }
 
 enum Endpoint: EndpointProtocol {
@@ -41,7 +42,10 @@ enum Endpoint: EndpointProtocol {
     }
 
     var host: String {
-        return "data.messari.io"
+        switch self {
+        case .getCoin:
+            return "data.messari.io"
+        }
     }
 
     var path: String {
@@ -62,11 +66,13 @@ enum Endpoint: EndpointProtocol {
         return makeStringURL()
     }
 
-    func makeURLRequest(method: HTTPMethods) -> URLRequest? {
+    func makeURLRequest(method: HTTPMethods) throws -> URLRequest {
         let urlStr = makeStringURL()
-        guard let urlStr = urlStr, let url = URL(string: urlStr) else {
-            print("func makeURLRequest error, wrong url")
-            return nil
+        guard let urlStr = urlStr,
+              let url = URL(string: urlStr),
+              UIApplication.shared.canOpenURL(url)
+        else {
+            throw ErrorNetwork.wrongURL
         }
 
         var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 60.0)
@@ -81,7 +87,6 @@ enum Endpoint: EndpointProtocol {
         urlComponents.host = host
         urlComponents.path = path
         urlComponents.queryItems = parameters
-
         return urlComponents.string
     }
 }

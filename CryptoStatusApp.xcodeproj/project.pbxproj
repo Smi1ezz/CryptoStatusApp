@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		095AD2E6E5D5A1232BD62705 /* Pods_CryptoStatusApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45A8C23AC76FB6C620D720A6 /* Pods_CryptoStatusApp.framework */; };
+		842D71C7292BE0C100271C3D /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842D71C6292BE0C100271C3D /* AppColors.swift */; };
+		842D71CA292CB79800271C3D /* GlobalPresentersProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842D71C9292CB79800271C3D /* GlobalPresentersProtocol.swift */; };
+		842D71CC292CC58D00271C3D /* GlobalViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842D71CB292CC58D00271C3D /* GlobalViewProtocols.swift */; };
+		842D71CE292CC91200271C3D /* GlobalRouterProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842D71CD292CC91200271C3D /* GlobalRouterProtocols.swift */; };
+		842D71D0292CC97300271C3D /* DateFormatsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842D71CF292CC97300271C3D /* DateFormatsEnum.swift */; };
 		84DC94B32915212900281FA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC94B22915212900281FA5 /* AppDelegate.swift */; };
 		84DC94B52915212900281FA5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC94B42915212900281FA5 /* SceneDelegate.swift */; };
 		84DC94B72915212900281FA5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC94B62915212900281FA5 /* MainViewController.swift */; };
@@ -50,6 +55,11 @@
 		3B0CE99221DF760AB4677AD9 /* Pods-CryptoStatusApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoStatusApp.debug.xcconfig"; path = "Target Support Files/Pods-CryptoStatusApp/Pods-CryptoStatusApp.debug.xcconfig"; sourceTree = "<group>"; };
 		45A8C23AC76FB6C620D720A6 /* Pods_CryptoStatusApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CryptoStatusApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C6F42E0298C7BA6F89B98D3 /* Pods-CryptoStatusApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoStatusApp.release.xcconfig"; path = "Target Support Files/Pods-CryptoStatusApp/Pods-CryptoStatusApp.release.xcconfig"; sourceTree = "<group>"; };
+		842D71C6292BE0C100271C3D /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
+		842D71C9292CB79800271C3D /* GlobalPresentersProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalPresentersProtocol.swift; sourceTree = "<group>"; };
+		842D71CB292CC58D00271C3D /* GlobalViewProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalViewProtocols.swift; sourceTree = "<group>"; };
+		842D71CD292CC91200271C3D /* GlobalRouterProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalRouterProtocols.swift; sourceTree = "<group>"; };
+		842D71CF292CC97300271C3D /* DateFormatsEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatsEnum.swift; sourceTree = "<group>"; };
 		84DC94AF2915212900281FA5 /* CryptoStatusApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoStatusApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84DC94B22915212900281FA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84DC94B42915212900281FA5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +121,24 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		842D71C5292BE0B000271C3D /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				842D71C6292BE0C100271C3D /* AppColors.swift */,
+			);
+			path = Colors;
+			sourceTree = "<group>";
+		};
+		842D71C8292CB75B00271C3D /* GlobalProtocols */ = {
+			isa = PBXGroup;
+			children = (
+				842D71C9292CB79800271C3D /* GlobalPresentersProtocol.swift */,
+				842D71CB292CC58D00271C3D /* GlobalViewProtocols.swift */,
+				842D71CD292CC91200271C3D /* GlobalRouterProtocols.swift */,
+			);
+			path = GlobalProtocols;
+			sourceTree = "<group>";
+		};
 		84DC94A62915212900281FA5 = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +160,8 @@
 		84DC94B12915212900281FA5 /* CryptoStatusApp */ = {
 			isa = PBXGroup;
 			children = (
+				842D71C8292CB75B00271C3D /* GlobalProtocols */,
+				842D71C5292BE0B000271C3D /* Colors */,
 				84DC951829278DB200281FA5 /* Correctors */,
 				84DC94CE29159AE600281FA5 /* Routers */,
 				84DC94FF2925009A00281FA5 /* Errors */,
@@ -313,6 +343,7 @@
 			isa = PBXGroup;
 			children = (
 				84DC951929278DE600281FA5 /* GlobalCorrector.swift */,
+				842D71CF292CC97300271C3D /* DateFormatsEnum.swift */,
 			);
 			path = Correctors;
 			sourceTree = "<group>";
@@ -466,6 +497,7 @@
 				84DC951A29278DE600281FA5 /* GlobalCorrector.swift in Sources */,
 				84DC94CB2915389B00281FA5 /* NetworkManager.swift in Sources */,
 				84DC950F2926755400281FA5 /* DetailsViewController.swift in Sources */,
+				842D71CC292CC58D00271C3D /* GlobalViewProtocols.swift in Sources */,
 				84DC950D2926754900281FA5 /* DetailsScrollView.swift in Sources */,
 				84DC94C92915374F00281FA5 /* Endpoint.swift in Sources */,
 				84DC94FC2923DC4A00281FA5 /* MainTableViewCell.swift in Sources */,
@@ -475,7 +507,9 @@
 				84DC94D829159FF900281FA5 /* UserDefaultsKeys.swift in Sources */,
 				84DC94D529159BC500281FA5 /* LoginViewController.swift in Sources */,
 				84DC94ED292396D400281FA5 /* LoginPresenter.swift in Sources */,
+				842D71C7292BE0C100271C3D /* AppColors.swift in Sources */,
 				84DC951329267F7700281FA5 /* WatchersView.swift in Sources */,
+				842D71CE292CC91200271C3D /* GlobalRouterProtocols.swift in Sources */,
 				84DC9501292500B300281FA5 /* Errors.swift in Sources */,
 				84DC950A2926330C00281FA5 /* UIFontExt.swift in Sources */,
 				84DC94EA2922771500281FA5 /* UIViewAnimation.swift in Sources */,
@@ -487,6 +521,8 @@
 				84DC94F229239A7500281FA5 /* UserModel.swift in Sources */,
 				84DC94E52922646D00281FA5 /* UIViewControllerHideKeybordExt.swift in Sources */,
 				84DC94FA2923D91300281FA5 /* MainPresenter.swift in Sources */,
+				842D71CA292CB79800271C3D /* GlobalPresentersProtocol.swift in Sources */,
+				842D71D0292CC97300271C3D /* DateFormatsEnum.swift in Sources */,
 				84DC94FE2923DC8B00281FA5 /* MainTableHeaderView.swift in Sources */,
 				84DC94DA292234F000281FA5 /* LoginView.swift in Sources */,
 				84DC94CD2915581500281FA5 /* CryptoCoinRespModel.swift in Sources */,

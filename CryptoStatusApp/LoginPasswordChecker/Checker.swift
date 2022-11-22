@@ -7,18 +7,18 @@
 
 import Foundation
 
-protocol CheckProtocol {
+protocol CheckerProtocol {
     func setCorrect(user: UserModelProtocol)
     func check(user: UserModelProtocol) -> Bool
 }
 
-protocol CheckerDelegate: AnyObject {
+protocol CheckerableDelegate: AnyObject {
     func failEntranse()
     func successEntrance()
 }
 
-final class LogInChecker: CheckProtocol {
-    weak var delegate: CheckerDelegate?
+final class LogInChecker: CheckerProtocol {
+    weak var delegate: CheckerableDelegate?
 
     private var correctUser: UserModelProtocol?
 

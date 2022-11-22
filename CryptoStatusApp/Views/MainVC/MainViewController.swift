@@ -8,17 +8,6 @@
 import UIKit
 import SnapKit
 
-protocol ErrorShowableView {
-    func showError(_ error: Error)
-    func showAlert(error: Error)
-}
-
-protocol SpinnerableView {
-    var spinner: UIActivityIndicatorView {get}
-    func startSpinner()
-    func stopSpinner()
-}
-
 protocol MainViewControllerProtocol: AnyObject, SpinnerableView, ErrorShowableView {
     func reloadTable()
 }
@@ -41,7 +30,6 @@ final class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .yellow
         setupSubviews()
         setupNavigationBar()
         presenter.setDelegateVC(self)
@@ -49,6 +37,7 @@ final class MainViewController: UIViewController {
     }
 
     private func setupSubviews() {
+        tableView.backgroundColor = .appColor(name: .backgroundBlack)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(MainTableViewCell.self, forCellReuseIdentifier: MainTableViewCell.description())
@@ -88,7 +77,7 @@ extension MainViewController: MainViewControllerProtocol {
     func startSpinner() {
         let footerSpinner = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 50))
         spinner.startAnimating()
-        spinner.color = .green
+        spinner.color = .appColor(name: .appGreen)
         footerSpinner.addSubview(spinner)
         spinner.center = footerSpinner.center
         tableView.tableFooterView = footerSpinner
@@ -113,6 +102,7 @@ extension MainViewController: MainViewControllerProtocol {
         } else if let text = (error as? AppError)?.rawValue {
             errorLabel.text = text
         }
+
         view.addSubview(errorLabel)
         errorLabel.snp.makeConstraints { make in
             make.center.equalToSuperview()
@@ -147,6 +137,7 @@ extension MainViewController: UITableViewDelegate {
                 throw AppError.emptyStorage
             }
             presenter.showDetailsVC(about: storage[indexPath.row])
+            tableView.deselectRow(at: indexPath, animated: true)
         } catch {
             print(error)
         }

@@ -13,7 +13,7 @@ protocol DetailsPresenterProtocol: PresenterProtocol, LogOutAblePresenter {
 
 final class DetailsPresenter: DetailsPresenterProtocol {
     private let detailsRouter: DetailsRouterProtocol
-    private var coinModel: DetailableCoin?
+    private var coinModel: DetailableCoin
 
     weak var presentedViewController: DetailsViewControllerProtocol?
 
@@ -27,14 +27,7 @@ final class DetailsPresenter: DetailsPresenterProtocol {
     }
 
     func getDetails() {
-        do {
-            guard let coinModel = coinModel else {
-                throw AppError.emptyStorage
-            }
-            presentedViewController?.setupDetailsView(coin: coinModel)
-        } catch {
-            print(error)
-        }
+        presentedViewController?.setupDetailsView(coin: coinModel)
     }
 
     func logOut() {

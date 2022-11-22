@@ -19,7 +19,7 @@ class DetailsScrollView: UIScrollView {
         symbolLabel.adjustsFontSizeToFitWidth = true
         symbolLabel.font = UIFont.bigAppFont()
         symbolLabel.textColor = .black
-        symbolLabel.backgroundColor = .green
+        symbolLabel.backgroundColor = .appColor(name: .appGreen)
         symbolLabel.makeBorder(borderColor: .black, borderWidth: 1, cornerRadius: 40)
         return symbolLabel
     }()
@@ -34,6 +34,7 @@ class DetailsScrollView: UIScrollView {
     private let nameLabel: UILabel = {
         let nameLabel = UILabel()
         nameLabel.textAlignment = .center
+        nameLabel.textColor = .appColor(name: .appGreen)
         nameLabel.font = UIFont.bigAppFont()
         return nameLabel
     }()
@@ -41,6 +42,7 @@ class DetailsScrollView: UIScrollView {
     private let timestampLabel: UILabel = {
         let timestampLabel = UILabel()
         timestampLabel.textAlignment = .center
+        timestampLabel.textColor = .appColor(name: .appGreen)
         timestampLabel.font = UIFont.mediumAppFont()
         return timestampLabel
     }()
@@ -57,36 +59,42 @@ class DetailsScrollView: UIScrollView {
 
     private let priceUsd: UILabel = {
         let priceUsd = UILabel()
+        priceUsd.textColor = .appColor(name: .appGreen)
         priceUsd.font = UIFont.mediumAppFont()
         return priceUsd
     }()
 
     private let priceBtc: UILabel = {
         let priceBtc = UILabel()
+        priceBtc.textColor = .appColor(name: .appGreen)
         priceBtc.font = UIFont.mediumAppFont()
         return priceBtc
     }()
 
     private let percentCngUsdLast24Hour: UILabel = {
-        let percentCngUsdLastHour = UILabel()
-        percentCngUsdLastHour.font = UIFont.mediumAppFont()
-        return percentCngUsdLastHour
+        let percentCngUsdLast24Hour = UILabel()
+        percentCngUsdLast24Hour.textColor = .appColor(name: .appGreen)
+        percentCngUsdLast24Hour.font = UIFont.mediumAppFont()
+        return percentCngUsdLast24Hour
     }()
 
     private let percentCngBtcLast24Hour: UILabel = {
-        let percentCngBtcLastHour = UILabel()
-        percentCngBtcLastHour.font = UIFont.mediumAppFont()
-        return percentCngBtcLastHour
+        let percentCngBtcLast24Hour = UILabel()
+        percentCngBtcLast24Hour.textColor = .appColor(name: .appGreen)
+        percentCngBtcLast24Hour.font = UIFont.mediumAppFont()
+        return percentCngBtcLast24Hour
     }()
 
     private let percentChangeUsdLast1Hour: UILabel = {
         let percentChangeUsdLast1Hour = UILabel()
+        percentChangeUsdLast1Hour.textColor = .appColor(name: .appGreen)
         percentChangeUsdLast1Hour.font = UIFont.mediumAppFont()
         return percentChangeUsdLast1Hour
     }()
 
     private let percentChangeBtcLast1Hour: UILabel = {
         let percentChangeBtcLast1Hour = UILabel()
+        percentChangeBtcLast1Hour.textColor = .appColor(name: .appGreen)
         percentChangeBtcLast1Hour.font = UIFont.mediumAppFont()
         return percentChangeBtcLast1Hour
     }()

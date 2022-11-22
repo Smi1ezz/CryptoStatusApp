@@ -14,6 +14,7 @@ final class StarsView: UIView {
     let starsLabel: UILabel = {
         let starsLabel = UILabel()
         starsLabel.textAlignment = .center
+        starsLabel.textColor = .appColor(name: .appGreen)
         starsLabel.font = UIFont.mediumAppFont()
         return starsLabel
     }()
@@ -21,7 +22,7 @@ final class StarsView: UIView {
     private let starsImageView: UIImageView = {
         let starsImageView = UIImageView(image: UIImage(systemName: "star.fill"))
         starsImageView.contentMode = .scaleAspectFill
-        starsImageView.tintColor = .yellow
+        starsImageView.tintColor = .appColor(name: .loginViewGreen)
         return starsImageView
     }()
 

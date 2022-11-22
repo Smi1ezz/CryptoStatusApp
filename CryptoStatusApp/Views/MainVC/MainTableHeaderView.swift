@@ -13,8 +13,8 @@ final class MainTableHeaderView: UITableViewHeaderFooterView {
         let chooseLabel = UILabel()
         chooseLabel.text = "Choose coin"
         chooseLabel.textAlignment = .center
-        chooseLabel.textColor = .black
-        chooseLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        chooseLabel.textColor = .appColor(name: .appGreen)
+        chooseLabel.font = UIFont.bigAppFont()
          return chooseLabel
     }()
 
@@ -22,8 +22,8 @@ final class MainTableHeaderView: UITableViewHeaderFooterView {
         let descrLabel = UILabel()
         descrLabel.text = "to see more details"
         descrLabel.textAlignment = .center
-        descrLabel.textColor = .black
-        descrLabel.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        descrLabel.textColor = .appColor(name: .appGreen)
+        descrLabel.font = UIFont.mediumAppFont()
          return descrLabel
     }()
 
@@ -31,7 +31,7 @@ final class MainTableHeaderView: UITableViewHeaderFooterView {
         let button = UIButton(type: .system)
         button.layer.cornerRadius = 10
         button.setTitle("Sort by price", for: .normal)
-        button.setTitleColor(.green, for: .normal)
+        button.tintColor = .appColor(name: .appGreen)
         button.titleLabel?.font = UIFont.smallAppFont()
         return button
     }()

@@ -7,11 +7,7 @@
 
 import UIKit
 
-protocol AppRouterType: AnyObject {
-    func showRootScreen()
-}
-
-final class AppRouter: AppRouterType {
+final class AppRouter: AppRouterProtocol {
     private var navigationVC: UINavigationController?
 
     func showRootScreen() {
@@ -25,8 +21,19 @@ final class AppRouter: AppRouterType {
             self.navigationVC = navigationVC
         }
 
+        setupNavigationAppearance()
+
         if let delegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
             delegate.window?.rootViewController = navigationVC
         }
+    }
+
+    private func setupNavigationAppearance() {
+        let navigationBarAppearance = UINavigationBarAppearance()
+        navigationBarAppearance.configureWithOpaqueBackground()
+        navigationBarAppearance.backgroundColor = .appColor(name: .loginViewGreen)
+        navigationBarAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.appColor(name: .appGreen)]
+        UINavigationBar.appearance().standardAppearance = navigationBarAppearance
+        UIBarButtonItem.appearance().tintColor = UIColor.appColor(name: .appGreen)
     }
 }

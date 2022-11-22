@@ -8,15 +8,14 @@
 import Foundation
 
 protocol DetailableCoin {
-    var status: Status? {get set}
-    var data: DataStruct? {get set}
+    var status: Status? {get}
+    var data: DataStruct? {get}
 }
 
 // MARK: - FullDetailsResponse
 struct CryptoCoinRespModel: Codable, DetailableCoin {
     var status: Status?
     var data: DataStruct?
-    var zszsz: Int
 }
 
 // MARK: - DataStruct

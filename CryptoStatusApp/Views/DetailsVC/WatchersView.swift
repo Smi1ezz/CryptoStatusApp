@@ -14,6 +14,7 @@ final class WatchersView: UIView {
     let watchersLabel: UILabel = {
         let watchersLabel = UILabel()
         watchersLabel.textAlignment = .center
+        watchersLabel.textColor = .appColor(name: .appGreen)
         watchersLabel.font = UIFont.mediumAppFont()
         return watchersLabel
     }()
@@ -21,7 +22,7 @@ final class WatchersView: UIView {
     private let watchersImageView: UIImageView = {
         let watchersImageView = UIImageView(image: UIImage(systemName: "eye.fill"))
         watchersImageView.contentMode = .scaleAspectFill
-        watchersImageView.tintColor = .blue
+        watchersImageView.tintColor = .appColor(name: .loginViewGreen)
         return watchersImageView
     }()
 

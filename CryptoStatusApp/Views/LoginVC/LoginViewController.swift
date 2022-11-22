@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol LoginViewControllerProtocol: CheckerDelegate, ErrorShowableView {
+protocol LoginViewControllerProtocol: CheckerableDelegate, ErrorShowableView {
 
 }
 
@@ -31,9 +31,10 @@ final class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.appColor(name: .backgroundBlack)
         setupSubViews()
         presenter.setDelegateVC(self)
+        navigationController?.isNavigationBarHidden = true
         activateHidableKeyboard()
     }
 
@@ -73,7 +74,6 @@ extension LoginViewController: LoginViewControllerProtocol {
 // MARK: ext for UITextFieldDelegate
 extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-
         textField.resignFirstResponder()
         return true
     }
@@ -85,12 +85,11 @@ extension LoginViewController: UITextFieldDelegate {
             self.inputPassword = textField.text
         }
         textField.resignFirstResponder()
-
     }
 }
 
 // MARK: ext for CheckerDelegate
-extension LoginViewController: CheckerDelegate {
+extension LoginViewController: CheckerableDelegate {
     func failEntranse() {
         loginView.wrongEntranse()
     }

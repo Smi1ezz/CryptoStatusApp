@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol LoginRouterProtocol: AppRouterType {
+protocol LoginRouterProtocol: AppRouterProtocol {
 
 }
 

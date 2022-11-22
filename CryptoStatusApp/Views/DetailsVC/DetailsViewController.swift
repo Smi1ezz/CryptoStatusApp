@@ -28,7 +28,7 @@ final class DetailsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        detailsView.backgroundColor = .appColor(name: .backgroundBlack)
         presenter.setDelegateVC(self)
         presenter.getDetails()
         setupNavigationBar()

@@ -7,11 +7,6 @@
 
 import Foundation
 
-enum DateFormat: String {
-    case dateAndTime = "dd.MM.yyyy HH:mm"
-
-}
-
 final class GlobalCorrector {
     static let shared = GlobalCorrector()
 

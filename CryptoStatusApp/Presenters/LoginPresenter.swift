@@ -8,22 +8,18 @@
 import Foundation
 import UIKit
 
-protocol LogInAblePresenter {
-    func tryToLogIn(name: String, password: String) throws
-}
-
 protocol LoginPresenterProtocol: PresenterProtocol, LogInAblePresenter {
-
+    func addCurrentUser(user: UserModelProtocol)
 }
 
 final class LoginPresenter: LoginPresenterProtocol {
     private let loginRouter: LoginRouterProtocol
-    private let inputChecker: CheckProtocol
+    private let inputChecker: CheckerProtocol
     private var userModel: UserModelProtocol?
 
     weak var presentedViewController: LoginViewControllerProtocol?
 
-    init(router: LoginRouterProtocol, checker: CheckProtocol, user: UserModelProtocol) {
+    init(router: LoginRouterProtocol, checker: CheckerProtocol, user: UserModelProtocol? = nil) {
         self.loginRouter = router
         self.inputChecker = checker
         self.userModel = user
@@ -53,5 +49,9 @@ final class LoginPresenter: LoginPresenterProtocol {
             presentedViewController?.failEntranse()
             throw ErrorLogin.wrongInput
         }
+    }
+
+    func addCurrentUser(user: UserModelProtocol) {
+        self.userModel = user
     }
 }

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol MainRouterProtocol: AppRouterType {
+protocol MainRouterProtocol: AppRouterProtocol {
     func showDetailsVC(about data: DetailableCoin)
 }
 
